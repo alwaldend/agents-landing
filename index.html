@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta name="generator" content="Hugo 0.165.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agents</title>
+    
+    <meta name="description" content="Repository-wide agent-system architecture, goals, and skills" />
+     
+    <meta name="github-repo" content="https://github.com/alwaldend/src" />
+      
+    <link rel="stylesheet" href="/scss/landing.min.757a78e91e368eeac2f0cb4833153359a2f027c8e1ec3cf51681f3f623b018da.css" />
+     
+  </head>
+  <body>
+    <header class="landing-topbar">
+      <a class="landing-brand" href="/">Agents</a>
+      <nav class="landing-nav" aria-label="Project links">
+        
+        <a href="https://alwaldend.com/docs/projects/agents/">Docs</a>
+        
+        <a href="https://github.com/alwaldend/src">Github</a>
+        
+      </nav>
+    </header>
+    <main class="landing-container">
+      <div class="landing-header">
+        <h1>Agents</h1>
+        <div class="btn-group" role="group" aria-label="Project links">
+          
+          <a class="btn btn-outline-primary" href="https://alwaldend.com/docs/projects/agents/">Docs</a>
+          
+          <a class="btn btn-outline-primary" href="https://github.com/alwaldend/src">Github</a>
+          
+        </div>
+      </div>
+      
+      <p class="landing-description">Repository-wide agent-system architecture, goals, and skills</p>
+       
+      <p class="landing-meta">Built with markdown, bzl.</p>
+      
+      <div class="landing-readme"><h1 id="repository-agent-system">Repository agent system</h1>
+<p>This project owns the repository-wide agent-system contract, its durable
+improvement goals, and reusable cross-repository skills. It does not centralize
+component facts or runtime state: each fact remains canonical at its natural
+owner, and system-wide views are derived projections.</p>
+<h2 id="start-here">Start here</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Document</th>
+					<th>Purpose</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a
+  href="https://github.com/alwaldend/src/blob/master/projects/agents/docs/current-state.md"
+  
+  >Current state</a
+>
+</td>
+					<td>Evidence-backed baseline and material seams</td>
+			</tr>
+			<tr>
+					<td><a
+  href="https://github.com/alwaldend/src/blob/master/projects/agents/docs/architecture.md"
+  
+  >Architecture</a
+>
+</td>
+					<td>Canonical abstraction tower, authorities, and invariants</td>
+			</tr>
+			<tr>
+					<td><a
+  href="https://github.com/alwaldend/src/blob/master/projects/agents/docs/roadmap.md"
+  
+  >Roadmap</a
+>
+</td>
+					<td>Dependency-ordered future work and acceptance signals</td>
+			</tr>
+			<tr>
+					<td><a
+  href="https://github.com/alwaldend/src/blob/master/projects/agents/goals"
+  
+  >Durable goals</a
+>
+</td>
+					<td>Versioned attempts, evidence, and acceptance state</td>
+			</tr>
+			<tr>
+					<td><a
+  href="https://github.com/alwaldend/src/blob/master/AGENTS.md"
+  
+  >Root agent guide</a
+>
+</td>
+					<td>Current repository-wide operating policy</td>
+			</tr>
+	</tbody>
+</table>
+<p>The current-state document describes supported entry points and their evidence
+boundaries. Dated audits remain in the goal records. The architecture defines
+the intended composition contract; the roadmap does not claim that proposed
+interfaces already exist.</p>
+<h2 id="ownership-boundaries">Ownership boundaries</h2>
+<ul>
+<li><code>docs/</code> owns the cross-layer system model and plan, not duplicated component
+configuration.</li>
+<li><code>goals/</code> owns durable repository-agent work records and evidence.</li>
+<li><code>skills/</code> owns reusable repository-wide agent procedures and their
+development-time evaluations.</li>
+<li>Product-specific skills remain with their project at
+<code>projects/&lt;project&gt;/skills/&lt;name&gt;</code>.</li>
+<li>Repository-internal executors and build integrations may live under
+<code>tools/</code>; their behavior remains owned and documented there.</li>
+</ul>
+<h2 id="skill-packaging-and-discovery">Skill packaging and discovery</h2>
+<p>Every canonical skill is packaged as a <code>skill_library</code> in its owning
+directory.</p>
+<p>The repository discovery directory <code>.agents/skills/</code> contains one relative
+symlink per skill. Each link points directly to its canonical project-owned
+directory. Bazel ignores the discovery directory and builds only canonical
+targets, preventing duplicate packages while allowing skills from more than
+one owning project.</p>
+<p>Skill evaluation data is not part of the runtime <code>skill_library</code> unless a
+skill explicitly declares otherwise. Every new or updated skill includes an
+offline Promptfoo configuration-validation target. That target checks the eval
+harness, not answer correctness. Live behavioral evaluations are manual,
+networked tests and must not be included in ordinary wildcard test runs; they
+may be omitted when representative coverage requires tool calls or external
+state that cannot be provided safely and reproducibly, with the gap documented
+beside the eval configuration.</p>
+</div>
+    </main>
+    <footer class="landing-footer">
+      <p>Generated from the project README.</p>
+    </footer>
+  </body>
+</html>
